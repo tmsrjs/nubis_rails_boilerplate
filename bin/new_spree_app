@@ -1,7 +1,9 @@
+#!/usr/bin/env ruby
+require 'open3'
 if ARGV.size != 1
-  puts 'Call like #{$0} appname'
+  puts "Call like #{$0} appname"
   exit 1
 end
 
 template = File.expand_path('../../lib/rails_app_templates/spree.rb', __FILE__)
-`rails new #{ARGV.first} -d mysql -m #{template}`
+exec("rails new #{ARGV.first} -d mysql -m #{template}")

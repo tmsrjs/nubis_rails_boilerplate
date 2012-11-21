@@ -1,3 +1,5 @@
+# -*- encoding: utf-8 -*-
+
 Gem::Specification.new do |s|
   s.name              = 'nubis_rails_boilerplate'
   s.version           = '0.0.0'
@@ -8,8 +10,8 @@ Gem::Specification.new do |s|
   s.email             = 'yo@nubis.im'
   s.files             = Dir["lib/**/*"] + ["Readme.md", "MIT-LICENSE"]
   s.homepage          = "https://github.com/nubis/nubis_rails_boilerplate"
-  s.bindir        = 'bin'
-  s.executables   = `git ls-files -- bin/*`.split("\n").map{ |f| File.basename(f) }
+  s.bindir            = 'bin'
+  s.executables       = (`git ls-files -- bin/*`).split("\n").map{ |f| File.basename(f) }
 
   s.add_dependency('capistrano')
   s.add_dependency('rails', '3.2')
