@@ -13,7 +13,6 @@ namespace :deploy do
     run "#{sudo} apt-get -y update"
     run "#{sudo} apt-get -y install python-software-properties"
     run "#{sudo} apt-get -y install libmysqlclient-dev mysql-client-5.5"
-    run "#{sudo} apt-get -y install libpq-dev"
     run "#{sudo} apt-get -y install libxml2 libxml2-dev libxslt-dev imagemagick"
   end
 end
