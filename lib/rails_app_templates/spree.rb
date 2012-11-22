@@ -76,7 +76,7 @@ if Rails.env.production?
     definition[:bucket] = Settings.s3_bucket_name
     definition[:s3_credentials] = {
       access_key_id: Settings.aws_access_key_id,
-      secret_access_key: Settings.secret_access_key
+      secret_access_key: Settings.aws_secret_access_key
     }
   end
 end
