@@ -9,6 +9,7 @@ gem_group :development, :test do
   gem "capybara"
 end
 
+gem 'settingslogic'
 gem 'sass-rails', '~> 3.2.3'
 gem 'unicorn'
 gem 'capistrano'

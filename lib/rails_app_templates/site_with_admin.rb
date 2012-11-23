@@ -19,7 +19,7 @@ gem_group :test do
   gem 'capybara-webkit', '0.12.0'
 end
 
-gem 'sass-rails', '~> 3.2.3'
+gem 'settingslogic'
 gem 'unicorn'
 gem 'capistrano'
 gem "bootstrap-sass", ">= 2.1.0.0"
@@ -69,6 +69,7 @@ class Settings < Settingslogic
 end
 CODE
 
+run 'rm spec/spec_helper.rb'
 file 'spec/spec_helper.rb', <<-CODE
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
@@ -94,10 +95,8 @@ RSpec.configure do |config|
 end
 CODE
 
-run 'rails generate activeadmin:install'
-rake 'db:migrate'
-
-run 'rails generate activeadmin:resource admin_user'
+run 'rails generate active_admin:install'
+run 'rails generate active_admin:resource admin_user'
 
 file 'spec/controllers/admin/admin_users_controller_spec.rb', <<-CODE
 require 'spec_helper'
@@ -108,10 +107,45 @@ render_views
 it "gets the list of available pre_signups" do
   sign_in create(:admin_user)
   get :index
-  assigns(:admin_users).should == AdminUsers.all
+  assigns(:admin_users).should == AdminUser.all
 end
 end
 CODE
+
+run 'rm app/admin/admin_users.rb'
+file 'app/admin/admin_users.rb', <<-CODE
+ActiveAdmin.register AdminUser do
+  index do
+    column :email
+    column :current_sign_in_at
+    column :last_sign_in_at
+    column :sign_in_count
+    default_actions
+  end
+  
+  form do |f|
+    f.inputs "Admin Details" do
+      f.input :email
+      f.input :password
+      f.input :password_confirmation
+    end
+    f.buttons
+  end
+end
+CODE
+
+run 'rm spec/factories/admin_users.rb'
+file 'spec/factories/admin_users.rb', <<-CODE
+FactoryGirl.define do
+  factory :admin_user do
+    email 'admin@example.com'
+    password 'password'
+  end
+end
+CODE
+
+rake 'db:migrate'
+rake 'db:test:prepare'
 
 git :init
 git :add => "."
