@@ -1,4 +1,3 @@
-require 'debugger'
 module NubisRailsBoilerplate
   class Capistrano
     attr_accessor :cap, :cap_path, :app_name

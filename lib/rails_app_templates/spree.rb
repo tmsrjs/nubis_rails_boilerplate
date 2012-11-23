@@ -7,13 +7,13 @@ git :commit => %Q{ -m 'Initial commit' }
 gem_group :development, :test do
   gem "rspec-rails", ">= 2.11.0"
   gem "capybara"
+  gem 'debugger'
 end
 
 gem 'settingslogic'
 gem 'sass-rails', '~> 3.2.3'
 gem 'unicorn'
 gem 'capistrano'
-gem 'debugger'
 gem 'spree', '1.2.0'
 gem 'spree_gateway', :git => 'git://github.com/spree/spree_gateway.git', :branch => "1-2-stable"
 gem 'spree_auth_devise', :git => 'git://github.com/spree/spree_auth_devise'
