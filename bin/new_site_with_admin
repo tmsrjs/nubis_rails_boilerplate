@@ -4,5 +4,5 @@ if ARGV.size != 1
   exit 1
 end
 
-template = File.expand_path('../../lib/rails_app_templates/spree.rb', __FILE__)
+template = File.expand_path('../../lib/rails_app_templates/site_with_admin.rb', __FILE__)
 exec("rails new #{ARGV.first} -d mysql -m #{template}")
