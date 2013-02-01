@@ -13,9 +13,9 @@ module NubisRailsBoilerplate
       load_permission
       load_configs
 
-      cap.set :user, "ubuntu"
+      cap.set :user, "bitnami"
       cap.set :application, app_name
-      cap.set :deploy_to, "/home/ubuntu/apps/#{app_name}"
+      cap.set :deploy_to, "/home/bitnami/apps/#{app_name}"
       cap.set :deploy_via, :remote_cache
       cap.set :use_sudo, false
       cap.set :scm, "git"
@@ -41,7 +41,7 @@ module NubisRailsBoilerplate
     def load_modules
       path = File.expand_path('../capistrano_recipes', __FILE__)
       modules = Dir["#{path}/*.rb"].collect{|f| File.basename(f)}
-      modules.each do |m|
+      modules.sort.each do |m|
         puts "Loading cap module #{m}"
         cap.load File.join(path, m)
       end
