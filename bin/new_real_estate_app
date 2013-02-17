@@ -1,0 +1,3 @@
+#!/usr/bin/env ruby
+require_relative '../lib/templates'
+NubisRailsBoilerplate::Templates.expand_skeleton('real_estate_app', __FILE__)

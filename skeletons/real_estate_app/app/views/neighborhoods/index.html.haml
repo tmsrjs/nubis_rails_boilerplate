@@ -1,0 +1,12 @@
+%h1 All neighborhoods
+
+%ul.thumbnails
+  - (@neighborhoods * 25).each do |neighborhood|
+    %li.span4
+      .thumbnail
+        - if image = neighborhood.images.first
+          = image_tag(image.file.url(:large))
+        = link_to(neighborhood_path(neighborhood)) do
+          %h3 #{neighborhood.name}
+        %p #{neighborhood.description}
+

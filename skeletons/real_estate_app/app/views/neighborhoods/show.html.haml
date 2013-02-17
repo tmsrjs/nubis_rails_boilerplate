@@ -1,0 +1,12 @@
+%h1 Properties in #{@neighborhood.name}
+
+%ul.thumbnails
+  - (@neighborhood.properties * 25).each do |property|
+    %li.span4
+      .thumbnail
+        - if image = property.images.first
+          = image_tag(image.file.url(:large))
+        = link_to(property_path(property)) do
+          %h3 #{property.name}
+        %h4 #{property.neighborhood.name}
+        %p #{property.description}

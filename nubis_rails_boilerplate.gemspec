@@ -14,6 +14,7 @@ Gem::Specification.new do |s|
   s.executables       = (`git ls-files -- bin/*`).split("\n").map{ |f| File.basename(f) }
 
   s.add_dependency('capistrano')
+  s.add_dependency('activeadmin', '0.5.0')
   s.add_dependency('settingslogic')
   s.add_dependency('rails', '~> 3.2.0')
 end

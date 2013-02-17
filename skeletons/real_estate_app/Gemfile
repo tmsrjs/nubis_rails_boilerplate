@@ -1,0 +1,61 @@
+source 'https://rubygems.org'
+
+gem 'rails', '3.2.11'
+
+# Bundle edge Rails instead:
+# gem 'rails', :git => 'git://github.com/rails/rails.git'
+
+gem 'mysql2'
+
+gem 'sass-rails',   '~> 3.2.3'
+gem 'compass-rails'
+gem 'font-awesome-sass-rails'
+
+# Gems used only for assets and not required
+# in production environments by default.
+group :assets do
+  gem 'coffee-rails', '~> 3.2.1'
+
+  # See https://github.com/sstephenson/execjs#readme for more supported runtimes
+  # gem 'therubyracer', :platforms => :ruby
+
+  gem 'uglifier', '>= 1.0.3'
+end
+
+group :development, :test do
+  gem "rspec-rails", ">= 2.11.0"
+  gem "factory_girl_rails", ">= 4.1.0"
+  gem "quiet_assets", ">= 1.0.1"
+  gem 'debugger'
+end
+
+group :development do
+  gem "haml-rails", ">= 0.3.5"
+  gem "hpricot", ">= 0.8.6"
+  gem "ruby_parser", ">= 2.3.1"
+  gem 'letter_opener'
+end
+
+group :test do
+  gem "email_spec", ">= 1.2.1"
+  gem "capybara"
+  gem 'capybara-webkit', '0.12.0'
+  gem 'shoulda-matchers'
+end
+
+gem 'jquery-rails'
+
+gem 'settingslogic'
+gem 'unicorn'
+gem 'capistrano'
+gem "bootstrap-sass", ">= 2.1.0.0"
+gem 'haml'
+gem 'jquery-rails'
+gem 'email_validator'
+gem 'exception_notification', git: 'git://github.com/smartinez87/exception_notification.git'
+#gem 'nubis_rails_boilerplate', git: 'git://github.com/nubis/nubis_rails_boilerplate.git'
+gem 'nubis_rails_boilerplate', path: '/Users/nubis/nubis_rails_boilerplate'
+gem "simple_form"
+gem 'activeadmin', '0.5.0'
+gem 'paperclip'
+gem 'kaminari'

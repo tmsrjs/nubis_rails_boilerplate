@@ -1,0 +1,13 @@
+- Check if server was installed correctly.
+- Add gitignore.
+- Add exception notifier configuration.
+- Configure address for outgoing email?
+
+====
+Script for:
+* Creating a new PEM file.
+* Creating a new instance.
+* Creating a matching database.
+* Creating an S3 bucket.
+* Creating a GIT repo.
+* Packaging it all up into a usable config for a website.

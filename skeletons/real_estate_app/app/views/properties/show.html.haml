@@ -1,0 +1,4 @@
+%h1 #{@property.name}
+- if image = @property.images.first
+  = image_tag(image.file.url(:large))
+%p #{@property.description}

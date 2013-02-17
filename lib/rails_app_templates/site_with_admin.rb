@@ -112,8 +112,8 @@ end
 end
 CODE
 
-run 'rm app/admin/admin_users.rb'
-file 'app/admin/admin_users.rb', <<-CODE
+run 'rm app/admin/admin_user.rb'
+file 'app/admin/admin_user.rb', <<-CODE
 ActiveAdmin.register AdminUser do
   index do
     column :email
@@ -143,6 +143,79 @@ FactoryGirl.define do
   end
 end
 CODE
+
+file 'db/migrate/00000001_initial_tables.rb', <<-CODE
+class InitialTables < ActiveRecord::Migration
+  create_table :images, force: true do |t|
+    t.integer :viewable_id
+    t.string :viewable_type, limit: 50
+    t.attachment :file
+    t.integer :position
+    t.timestamps
+  end
+
+  add_index :images, [:viewable_id], name: :index_images_on_viewable_id
+  add_index :images, [:viewable_type], name: :index_images_on_viewable_type
+  
+  create_table :properties, force: true do |t|
+    t.string :name
+    t.string :url_name
+    t.text :description
+    t.references :neighborhood
+    t.float :latitude
+    t.float :longitude
+    t.string :address
+    t.string :public_address
+    t.integer :covered_square_meters
+    t.integer :uncovered_square_meters
+    t.integer :rooms
+    t.integer :bathrooms
+    t.text :amenities
+    t.string :keywords
+    t.boolean :for_rent
+    t.boolean :for_sale
+  end
+
+  add_index :properties, [:neighborhood_id], name: :index_images_on_neighborhood_id
+  
+  create_table :neighborhood, force: true do |t|
+    t.string :name
+    t.string :url_name
+    t.text :description
+    t.text :amenities
+  end
+end
+CODE
+
+file 'app/models/image.rb', <<-CODE
+class Image < ActiveRecord::Base
+  attr_accessible :file, as: :admin
+  has_attached_file :file, styles: {small: '240x240>', large: '600x600>'}
+  validates_attachment :file, presence: true,
+    content_type: { content_type: ['image/jpg', 'image/png', 'image/gif', 'image/jpeg'] }
+  belongs_to :viewable, :polymorphic => true
+end
+CODE
+
+file 'app/models/property.rb', <<-CODE
+class Property < ActiveRecord::Base
+  has_many :images, as: :viewable, order: :position, :dependent => :destroy
+  belongs_to :neighborhood
+  accepts_nested_attributes_for :images, allow_destroy: true
+  attr_protected
+end  
+CODE
+
+file 'app/models/neighborhood.rb', <<-CODE
+class Neighborhood < ActiveRecord::Base
+  has_many :images, as: :viewable, order: :position, :dependent => :destroy
+  accepts_nested_attributes_for :images, allow_destroy: true
+  attr_protected
+  has_many :properties
+end  
+CODE
+
+file 'app/controllers/properties_controller.rb'
 
 rake 'db:migrate'
 rake 'db:test:prepare'

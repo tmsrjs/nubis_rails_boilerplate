@@ -1,0 +1,26 @@
+site_name: My Cool Site
+site_url: 192.168.1.1
+
+mysql:
+  database:
+  username:
+  host:
+  password:
+
+s3:
+  aws_access_key_id:
+  aws_secret_access_key:
+  bucket_name:
+
+exception_email:
+  sender: exception-notifier@example.com
+  recipients: ed@example.com, edd@example.com, eddy@example.com
+  prefix: '[Exception]'
+  
+smtp:
+  address: smtp.gmail.com
+  user_name: example@gmail.com
+  password: ultrasecret
+  port: 587
+  authentication: plain
+  enable_starttls_auto: true
