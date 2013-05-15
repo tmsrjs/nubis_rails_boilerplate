@@ -13,7 +13,7 @@ module NubisRailsBoilerplate
       puts "Patching #{skeleton} files for #{app_name}"
       %w(Rakefile config/application.rb config/environment.rb config/environments/development.rb
       config/environments/test.rb config/environments/production.rb config/initializers/secret_token.rb
-      config/database.yml config/initializers/session_store.rb config/routes.rb config.ru).each do |filename|
+      config/deploy.rb config/database.yml config/initializers/session_store.rb config/routes.rb config.ru).each do |filename|
         full_path = File.expand_path(filename, app_name)
         new_contents = File.read(full_path)
           .gsub(skeleton.camelize, app_name.camelize)

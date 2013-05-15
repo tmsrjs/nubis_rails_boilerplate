@@ -8,10 +8,10 @@ module NubisRailsBoilerplate
 
       cap.set :host_app_path, cap_path
       cap.set :repository, "git@github.com:nubis/#{app_name}.git"
+      load_configs
       check_git_repo
       load_modules
       load_permission
-      load_configs
 
       cap.set :user, "ubuntu"
       cap.set :application, app_name
@@ -70,11 +70,12 @@ module NubisRailsBoilerplate
       unless configs.values.all?
         puts "You need to provide your configuration options before you can push."
         puts "Setup your server and database and input your data in: #{configs_path}"
+        exit 1
       end
       configs.each do |key, value|
-        cap.set key, value
+        cap.set :configs, configs
       end
-      cap.server configs['server_url'], :web, :app, :db, primary: true
+      cap.server configs['site_url'], :web, :app, :db, primary: true
     end
   end
 end

@@ -1,8 +1,8 @@
 production:
   adapter: mysql2
   encoding: utf8
-  database: <%= mysql_database %>
+  database: <%= configs['mysql']['database'] %>
   pool: 5
-  username: <%= mysql_username %>
-  password: <%= mysql_password %>
-  host: <%= mysql_host %>
+  username: <%= configs['mysql']['username'] %>
+  password: <%= configs['mysql']['password'] %>
+  host: <%= configs['mysql']['host'] %>
