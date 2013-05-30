@@ -6,7 +6,7 @@ server {
   listen 80;
   <% unless configs['domain_name'].blank? %>
   server_name *.<%= configs['domain_name'] %>
-  <% end -%>
+  <% end %>
   root <%= current_path %>/public;
 
   location ^~ /assets/ {

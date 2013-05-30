@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |s|
   s.name              = 'nubis_rails_boilerplate'
-  s.version           = '0.0.10'
+  s.version           = '0.0.11'
   s.date              = '2013-05-29'
   s.summary           = 'My preferred rails application templates, capistrano tasks, etc'
   s.description       = 'I usually start the same rails apps, running on the same infrastructure, so this collection of recipes and application templates let me focus on what I care about the most.'
